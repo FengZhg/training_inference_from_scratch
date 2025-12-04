@@ -119,7 +119,7 @@ def main():
     backend, rank, world_size, local_rank, device = setup_dist()
     pin_memory = device.type == "cuda"
 
-    train_dataset, test_dataset = get_datasets_ddp(args.data_dir, rank)
+    train_dataset, test_dataset = get_datasets_ddp(args.data_dir, local_rank)
     train_sampler = DistributedSampler(train_dataset, num_replicas=world_size, rank=rank, shuffle=True)
     test_sampler = DistributedSampler(test_dataset, num_replicas=world_size, rank=rank, shuffle=False)
 
