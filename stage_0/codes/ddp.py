@@ -196,4 +196,11 @@ torchrun \
 
 第四行是ddp.py的参数，--epochs 233333表示训练233333轮，--batch-size 128表示每个批次有128个样本，--data-dir /tmp/data表示数据目录为/tmp/data，--save-path /tmp/resnet18_mnist_ddp_multi_node.pth表示保存模型的路径为/tmp/resnet18_mnist_ddp_multi_node.pth
 
+阿里云运行命令（依赖环境变量）：
+torchrun \
+    --nproc_per_node=1 --master_addr=${MASTER_ADDR} --master_port=${MASTER_PORT} --nnodes=${WORLD_SIZE} --node_rank=${RANK} \
+    /root/code/training_inference_from_scratch/stage_0/codes/ddp.py --epochs 2333 --batch-size 128 \
+        --data-dir /mnt/data/training_inference_from_scratch/${MASTER_ADDR}/data \
+        --save-path /mnt/data/training_inference_from_scratch/${MASTER_ADDR}/resnet18_mnist_ddp_multi_node.pth
+
 '''
